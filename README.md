@@ -70,7 +70,7 @@ Tao file `.env` tu `.env.example` tai thu muc goc, cac bien quan trong:
    - Linux/macOS: `./deploy.sh`
 
 Sau khi chay thanh cong:
-- Frontend: http://localhost
+- Frontend: http://localhost:5173
 - Backend API: http://localhost:5000
 - Swagger: http://localhost:5000/swagger
 - Tai khoan mac dinh: `admin / Admin@123` (neu duoc cau hinh seed password tuong ung)
