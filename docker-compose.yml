@@ -1,0 +1,44 @@
+services:
+  # Backend API
+  backend:
+    build:
+      context: ./PawnShopV2
+      dockerfile: Dockerfile
+    container_name: pawnshop-api
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Production
+      - DatabaseProvider=${DATABASE_PROVIDER}
+      - ConnectionStrings__DefaultConnection=${DEFAULT_CONNECTION_STRING}
+      - JwtSettings__SecretKey=${JWT_SECRET_KEY}
+      - JwtSettings__Issuer=${JWT_ISSUER}
+      - JwtSettings__Audience=${JWT_AUDIENCE}
+      - JwtSettings__AccessTokenExpirationMinutes=${JWT_ACCESS_TOKEN_EXPIRATION_MINUTES}
+      - SeedData__AdminPassword=${ADMIN_DEFAULT_PASSWORD}
+    volumes:
+      - pawnshop_data:/app/data
+    ports:
+      - "5000:5000"
+    networks:
+      - pawnshop-network
+    restart: unless-stopped
+
+  # Frontend
+  frontend:
+    build:
+      context: ./PawnShopV2Frontend
+      dockerfile: Dockerfile
+    container_name: pawnshop-web
+    ports:
+      - "80:80"
+    depends_on:
+      - backend
+    networks:
+      - pawnshop-network
+    restart: unless-stopped
+
+networks:
+  pawnshop-network:
+    driver: bridge
+
+volumes:
+  pawnshop_data:

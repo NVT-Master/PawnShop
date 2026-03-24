@@ -1,0 +1,32 @@
+.dotnet/
+
+# Local environment files
+.env
+*.env.local
+PawnShopV2Frontend/.env
+
+# Frontend dependencies and build output
+PawnShopV2Frontend/node_modules/
+PawnShopV2Frontend/dist/
+
+# .NET build output
+**/bin/
+**/obj/
+
+# Python cache
+tools/__pycache__/
+
+# IDE and OS files
+.vs/
+.idea/
+.DS_Store
+Thumbs.db
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Optional local databases
+*.db
+*.sqlite
+*.sqlite3
